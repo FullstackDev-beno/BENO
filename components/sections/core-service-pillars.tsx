@@ -65,7 +65,7 @@ export function CoreServicePillars() {
       )
       if (heading) gsap.fromTo(heading,
         { opacity: 0, y: 40, skewY: 1.5 },
-        { opacity: 1, y: 0, skewY: 0, duration: 1.0, ease: "expo.out", delay: 0.08,
+        { opacity: 1, y: 0, skewY: 0, duration: 1.0, ease: "expo.out", delay: 0.8,
           scrollTrigger: { trigger: headerRef.current, start: "top 88%" } }
       )
       if (subtext) gsap.fromTo(subtext,
@@ -106,7 +106,7 @@ export function CoreServicePillars() {
       gsap.set(cards.slice(1), { opacity: 0.35 })
 
       // Extra scroll pixels the first card "dwells" before track moves
-      const DWELL = 420
+      const DWELL = 30
       const slideDistance = track.scrollWidth - window.innerWidth + 160
       const totalEnd = slideDistance + DWELL
 

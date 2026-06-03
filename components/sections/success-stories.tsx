@@ -100,7 +100,7 @@ export function SuccessStories() {
       })
 
       // DWELL: how many extra scroll-px card 0 stays before track moves
-      const DWELL = 420
+      const DWELL = 90
       const getSlide = () => track.scrollWidth - window.innerWidth + 120
 
       const tl = gsap.timeline({
