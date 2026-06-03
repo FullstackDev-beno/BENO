@@ -309,14 +309,35 @@ export function Header() {
             {/* CTA */}
             <div className="hidden lg:block">
               <button
-                className={`px-6 py-2.5 text-[15px] font-semibold rounded-xl transition-all duration-300 ${
-                  isScrolled
-                    ? "bg-[#3b67ff] hover:bg-[#2f57e8] text-white shadow-lg"
-                    : "bg-white text-[#3b67ff] hover:bg-white/90"
-                }`}
-              >
-                Contact Us
-              </button>
+  className={`
+    relative overflow-hidden
+    px-6 py-2.5 text-[15px] font-semibold rounded-xl
+    transition-all duration-300 group
+    ${isScrolled
+      ? "bg-[#3b67ff] text-white shadow-[0_4px_24px_rgba(59,103,255,0.45)]"
+      : "bg-white text-[#3b67ff] shadow-[0_2px_12px_rgba(59,103,255,0.15)]"
+    }
+  `}
+>
+  {/* Shine sweep on hover */}
+  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+  {/* Animated border ring */}
+  <span className={`absolute inset-0 rounded-xl border-2 transition-all duration-300 opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100
+    ${isScrolled ? "border-white/30" : "border-[#3b67ff]/40"}
+  `} />
+
+  {/* Text + arrow */}
+  <span className="relative flex items-center gap-2">
+    Contact Us
+    <svg
+      className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1"
+      viewBox="0 0 14 14" fill="none"
+    >
+      <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  </span>
+</button>
             </div>
 
             {/* MOBILE MENU */}

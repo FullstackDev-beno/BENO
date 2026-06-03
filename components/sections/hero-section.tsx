@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import { FileText, BadgeCheck, UserRoundCheck, Star } from "lucide-react"
 import { gsap } from "@/lib/gsap"
+import { PartnerStrip } from "./partnerStrip"
 
 // Pre-defined headline lines for clean stagger reveal
 const HEADLINE_LINES = [
@@ -288,7 +289,8 @@ export function HeroSection() {
       </div>
 
       {/* BLUE STRIP */}
-      <div className="relative z-10 h-[88px] bg-gradient-to-r from-[#3b67ff] via-[#4d7bff] to-[#3b67ff] shrink-0" />
+      <PartnerStrip />
+      {/* <div className="relative z-10 h-[88px] bg-gradient-to-r from-[#3b67ff] via-[#4d7bff] to-[#3b67ff] shrink-0" /> */}
     </section>
   )
 }

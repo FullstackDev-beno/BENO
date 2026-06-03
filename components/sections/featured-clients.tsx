@@ -13,11 +13,11 @@ const government = [
 
 const technology = [
   { name: "Google",      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" },
-  { name: "Damco",       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Damco_logo.svg/200px-Damco_logo.svg.png" },
-  { name: "NTT Data",    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/NTT-DATA-Logo.svg/200px-NTT-DATA-Logo.svg.png" },
-  { name: "infodart",    logo: "https://www.infodart.com/wp-content/uploads/2021/01/infodart-logo.png" },
-  { name: "Bit studios", logo: "https://bitstudios.com/wp-content/uploads/2021/06/bit-studios-logo.png" },
-  { name: "Algoworks",   logo: "https://www.algoworks.com/wp-content/uploads/2021/09/algoworks-logo.png" },
+  { name: "Damco",       logo: "/publicimg/client21.png" },
+  { name: "NTT Data",    logo: "/publicimg/client14.png " },
+  { name: "infodart",    logo: "/publicimg/client17.png" },
+  { name: "Bit studios", logo: "/publicimg/client19.png" },
+  { name: "Algoworks",   logo: "/publicimg/client20.png" },
 ]
 
 const fintech = [
