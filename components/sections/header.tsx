@@ -285,7 +285,7 @@ export function Header() {
                   />
                 ) : (
                   <img
-                    src="/whitelogo.png"
+                    src="/whitelogo.svg"
                     alt="Beno Support"
                     className="h-9 sm:h-10 w-auto block"
                     style={{ imageRendering: "crisp-edges" }}
@@ -387,7 +387,7 @@ export function Header() {
     transition-all duration-300 group
     ${isScrolled
       ? "bg-[#3b67ff] text-white shadow-[0_4px_24px_rgba(59,103,255,0.45)]"
-      : "bg-white text-[#3b67ff] shadow-[0_2px_12px_rgba(59,103,255,0.15)]"
+      : " text-white shadow-[0_2px_12px_rgba(59,103,255,0.15)]"
     }
   `}
 >

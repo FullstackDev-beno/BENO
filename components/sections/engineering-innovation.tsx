@@ -176,7 +176,7 @@ export function EngineeringInnovation() {
           <div ref={rightRef} className="relative">
             <div className="rounded-2xl overflow-hidden" style={{ aspectRatio: "4/4.5" }}>
               <img
-                src="/benoBuilding.svg"
+                src="/benoBuild.svg"
                 alt="Beno Support office building"
                 className="w-full h-full object-cover"
               />

@@ -8,38 +8,92 @@ import './globals.css'
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
+const BASE_URL = 'https://www.benosupport.com'
+
 export const metadata: Metadata = {
-  title: 'Beno Support | Engineering Innovation Since 2008',
-  description: 'Beno Support is a global technology and IT services provider built on engineering and AI-native innovation. 15+ years of excellence in Core Engineering, AI Automation, and Digital Products.',
-  keywords: ['AI', 'Engineering', 'Technology Solutions', 'Digital Transformation', 'Cloud Solutions', 'DevOps'],
+  metadataBase: new URL(BASE_URL),
+  title: {
+    default: 'AI Engineering & Cloud Solutions Company | Beno Support',
+    template: '%s | Beno Support',
+  },
+  description: 'Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide.',
+  keywords: [
+    // Primary
+    'AI engineering company',
+    'software development company',
+    'enterprise software solutions',
+    'cloud consulting company',
+    'AI consulting services',
+    'cybersecurity services company',
+    'platform engineering company',
+    'digital transformation services',
+    'managed IT services',
+    'software development company India',
+    // Secondary
+    'SaaS development company',
+    'DevOps consulting services',
+    'enterprise AI solutions',
+    'cloud modernization services',
+    'Kubernetes consulting',
+    'digital product engineering',
+    'AI automation consulting',
+    'enterprise cybersecurity',
+    'managed cloud services',
+    'startup software development company',
+    'SMB digital transformation solutions',
+  ],
+  authors: [{ name: 'Beno Support', url: BASE_URL }],
+  creator: 'Beno Support',
+  publisher: 'Beno Support',
+  category: 'Technology',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
   openGraph: {
-    title: 'Beno Support | Engineering Innovation Since 2008',
-    description: 'Global technology partner for AI-native solutions and digital transformation.',
     type: 'website',
+    locale: 'en_US',
+    url: BASE_URL,
+    siteName: 'Beno Support',
+    title: 'AI Engineering & Cloud Solutions Company | Beno Support',
+    description: 'Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide.',
+    images: [
+      {
+        url: '/images/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Beno Support — AI Engineering & Cloud Solutions',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Beno Support | Engineering Innovation Since 2008',
-    description: 'Global technology partner for AI-native solutions and digital transformation.',
+    site: '@benosupport',
+    creator: '@benosupport',
+    title: 'AI Engineering & Cloud Solutions Company | Beno Support',
+    description: 'Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services worldwide.',
+    images: ['/images/og-image.png'],
   },
-  generator: 'v0.app',
   icons: {
     icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
+      { url: '/logo.svg', type: 'image/svg+xml' },
+      { url: '/icon-light-32x32.png', sizes: '32x32', type: 'image/png', media: '(prefers-color-scheme: light)' },
+      { url: '/whitelogo.svg', type: 'image/svg+xml', media: '(prefers-color-scheme: dark)' },
     ],
     apple: '/apple-icon.png',
+    shortcut: '/logo.svg',
   },
+  manifest: '/site.webmanifest',
 }
 
 export default function RootLayout({
@@ -54,6 +108,42 @@ export default function RootLayout({
           {children}
         </SmoothScrollProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {/* JSON-LD — Organization structured data */}
+        <Script id="json-ld-org" type="application/ld+json" strategy="beforeInteractive">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Beno Support",
+            "url": "https://www.benosupport.com",
+            "logo": "https://www.benosupport.com/logo.svg",
+            "description": "Beno Support delivers AI engineering, software development, cloud infrastructure, cybersecurity, and digital transformation services for startups, SMBs, and enterprises worldwide.",
+            "foundingDate": "2008",
+            "numberOfEmployees": { "@type": "QuantitativeValue", "value": "50-200" },
+            "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+            "sameAs": [
+              "https://www.linkedin.com/company/benosupport",
+              "https://twitter.com/benosupport"
+            ],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "contactType": "customer service",
+              "availableLanguage": ["English", "Hindi"]
+            },
+            "serviceArea": { "@type": "Place", "name": "Worldwide" },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Technology Services",
+              "itemListElement": [
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Engineering" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Software Development" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Infrastructure" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cybersecurity" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Digital Transformation" } },
+                { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Managed IT Services" } }
+              ]
+            }
+          }
+        `}</Script>
         {/* Hidden Google Translate mount point */}
         <div id="google_translate_element" style={{ display: 'none' }} />
         <Script id="google-translate-init" strategy="afterInteractive">{`

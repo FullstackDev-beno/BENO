@@ -23,6 +23,9 @@ export function HeroSection() {
   const ctaRef      = useRef<HTMLDivElement>(null)
   const badgesRef   = useRef<HTMLDivElement>(null)
   const statsRef    = useRef<HTMLDivElement>(null)
+  const statNum1Ref = useRef<HTMLHeadingElement>(null)
+  const statNum2Ref = useRef<HTMLHeadingElement>(null)
+  const statNum3Ref = useRef<HTMLHeadingElement>(null)
 
   // ── CINEMATIC LOAD SEQUENCE ──────────────────────────────────────────────────
   useEffect(() => {
@@ -109,6 +112,41 @@ export function HeroSection() {
         },
         1.05
       )
+
+      // 8. Count-up animations synced with each card's stagger offset
+      const c1 = { val: 0 }
+      const c2 = { val: 0 }
+      const c3 = { val: 0 }
+
+      tl.to(c1, {
+        val: 500,
+        duration: 1.4,
+        ease: "power2.out",
+        onUpdate: () => {
+          if (statNum1Ref.current)
+            statNum1Ref.current.textContent = Math.round(c1.val) + "+"
+        },
+      }, 1.05)
+
+      tl.to(c2, {
+        val: 96,
+        duration: 1.4,
+        ease: "power2.out",
+        onUpdate: () => {
+          if (statNum2Ref.current)
+            statNum2Ref.current.textContent = Math.round(c2.val) + "%"
+        },
+      }, 1.17)
+
+      tl.to(c3, {
+        val: 15,
+        duration: 1.4,
+        ease: "power2.out",
+        onUpdate: () => {
+          if (statNum3Ref.current)
+            statNum3Ref.current.textContent = Math.round(c3.val) + "+"
+        },
+      }, 1.29)
     }, heroRef)
 
     return () => ctx.revert()
@@ -247,7 +285,7 @@ export function HeroSection() {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-[#94a3b8] text-[11px] font-medium tracking-wide">Projects Delivered</p>
-                    <h3 className="text-white text-[24px] font-bold leading-tight mt-0.5">500+</h3>
+                    <h3 ref={statNum1Ref} className="text-white text-[24px] font-bold leading-tight mt-0.5">0+</h3>
                   </div>
                   <div className="w-9 h-9 rounded-lg bg-[#0d2f33] flex items-center justify-center shrink-0">
                     <FileText className="w-4 h-4 text-[#10b981]" />
@@ -260,7 +298,7 @@ export function HeroSection() {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-[#94a3b8] text-[11px] font-medium tracking-wide">Client Retention Rate</p>
-                    <h3 className="text-white text-[24px] font-bold leading-tight mt-0.5">96%</h3>
+                    <h3 ref={statNum2Ref} className="text-white text-[24px] font-bold leading-tight mt-0.5">0%</h3>
                   </div>
                   <div className="w-9 h-9 rounded-lg bg-[#2d1a0a] flex items-center justify-center shrink-0">
                     <BadgeCheck className="w-4 h-4 text-[#f97316]" />
@@ -273,7 +311,7 @@ export function HeroSection() {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-[#94a3b8] text-[11px] font-medium tracking-wide">Years of Experience</p>
-                    <h3 className="text-white text-[24px] font-bold leading-tight mt-0.5">10+</h3>
+                    <h3 ref={statNum3Ref} className="text-white text-[24px] font-bold leading-tight mt-0.5">0+</h3>
                   </div>
                   <div className="w-9 h-9 rounded-lg bg-[#0f2540] flex items-center justify-center shrink-0">
                     <UserRoundCheck className="w-4 h-4 text-[#3b82f6]" />

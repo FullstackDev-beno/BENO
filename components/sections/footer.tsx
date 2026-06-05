@@ -5,22 +5,23 @@ import { Globe, Share2, Twitter, Facebook, Instagram, Github } from "lucide-reac
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-border">
-      <div className="section-container py-12 sm:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <footer className="bg-white border-t border-[#e8eef8]">
+      <div className=" mx-auto px-6 lg:px-12 py-14 lg:py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[220px_1fr_1fr_1fr] gap-2 lg:gap-14">
+
           {/* Brand */}
           <div className="space-y-4">
-            <Link href="/" className="inline-block transition-transform duration-300 hover:scale-[1.04] will-change-transform">
-              <img src="/logo.svg" alt="Beno Support" className="h-10 w-auto" style={{ imageRendering: "crisp-edges" }} />
+            <Link href="/" className="inline-block">
+              <img src="/logo.svg" alt="Beno Support" className="h-10 w-auto" />
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed">
+            <p className="text-sm text-[#4b5a72] leading-relaxed">
               Engineering Excellence in AI &amp; Technology since 2008.
             </p>
             <div className="flex items-center gap-3">
-              <button className="text-muted-foreground hover:text-foreground transition-colors">
+              <button className="text-[#94a3b8] hover:text-[#3b67ff] transition-colors">
                 <Globe className="w-5 h-5" />
               </button>
-              <button className="text-muted-foreground hover:text-foreground transition-colors">
+              <button className="text-[#94a3b8] hover:text-[#3b67ff] transition-colors">
                 <Share2 className="w-5 h-5" />
               </button>
             </div>
@@ -28,12 +29,17 @@ export function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-xs font-semibold tracking-widest text-foreground uppercase mb-4">Company</h4>
+            <h4 className="text-[11px] font-semibold tracking-widest text-[#0d1e3c] uppercase mb-5">Company</h4>
             <ul className="space-y-3">
-              {["About Us", "Careers", "Case Studies", "Contact"].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    {item}
+              {[
+                { label: "About Us",     href: "#" },
+                { label: "Careers",      href: "#" },
+                { label: "Case Studies", href: "#" },
+                { label: "Contact",      href: "#" },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <Link href={href} className="text-sm text-[#4b5a72] hover:text-[#3b67ff] transition-colors">
+                    {label}
                   </Link>
                 </li>
               ))}
@@ -42,11 +48,20 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="text-xs font-semibold tracking-widest text-foreground uppercase mb-4">Services</h4>
+            <h4 className="text-[11px] font-semibold tracking-widest text-[#0d1e3c] uppercase mb-5">Services</h4>
             <ul className="space-y-3">
-              {["AI & ML", "Cloud Strategy", "Engineering", "Security"].map((item) => (
+              {[
+                "Core Engineering & Application Architecture",
+                "Agentic AI & Intelligent Automation",
+                "Enterprise & Startup Tech Strategy",
+                "Cloud & Platform Engineering",
+                "Cyber Resilience & Threat Intelligence",
+                "Digital Products & Experience Engineering",
+                "Strategic IT Governance & Managed Services",
+                "Workforce Technology & Human Capital Advisory",
+              ].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-sm text-[#4b5a72] hover:text-[#3b67ff] transition-colors leading-snug block">
                     {item}
                   </Link>
                 </li>
@@ -54,13 +69,23 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Industry */}
           <div>
-            <h4 className="text-xs font-semibold tracking-widest text-foreground uppercase mb-4">Legal</h4>
+            <h4 className="text-[11px] font-semibold tracking-widest text-[#0d1e3c] uppercase mb-5">Industry</h4>
             <ul className="space-y-3">
-              {["Privacy Policy", "Terms of Service", "Security Compliance"].map((item) => (
+              {[
+                "Banking & Financial Services",
+                "Healthcare & Life Sciences",
+                "Manufacturing",
+                "E-Commerce & Retail",
+                "Logistics & Supply Chain",
+                "Information Technology & SaaS",
+                "Education & EdTech",
+                "Insurance",
+                "Government & Public Sector",
+              ].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <Link href="#" className="text-sm text-[#4b5a72] hover:text-[#3b67ff] transition-colors leading-snug block">
                     {item}
                   </Link>
                 </li>
@@ -70,18 +95,18 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
+        <div className="mt-12 pt-6 border-t border-[#e8eef8] flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-[#94a3b8]">
             © 2026 Beno Support. Engineering Excellence in AI &amp; Technology.
           </p>
           <div className="flex items-center gap-4">
             {[
-              { icon: Twitter, href: "#" },
-              { icon: Facebook, href: "#" },
+              { icon: Twitter,   href: "#" },
+              { icon: Facebook,  href: "#" },
               { icon: Instagram, href: "#" },
-              { icon: Github, href: "#" },
+              { icon: Github,    href: "#" },
             ].map(({ icon: Icon, href }, i) => (
-              <Link key={i} href={href} className="text-muted-foreground hover:text-foreground transition-colors">
+              <Link key={i} href={href} className="text-[#94a3b8] hover:text-[#3b67ff] transition-colors">
                 <Icon className="w-5 h-5" />
               </Link>
             ))}

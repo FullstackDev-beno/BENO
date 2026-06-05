@@ -23,24 +23,45 @@ const services = [
   },
   {
     image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&h=400&fit=crop",
-    title: "Digital Products &\nExperience\nEngineering",
-    description: "Design user-centric digital experiences through UX research, UI engineering, product strategy, and conversion optimization.",
-    stat: "96% retention rate",
+    title: "Enterprise & Startup\nTech Strategy",
+    description: "Transform business operations with strategic technology consulting, modernization roadmaps, product architecture, and digital transformation advisory.",
+    stat: "15+ years expertise",
     statColor: "#f59e0b",
   },
   {
     image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop",
-    title: "Cloud & DevOps\nEngineering",
-    description: "Transform your infrastructure with cloud-native solutions, CI/CD pipelines, and modern DevOps practices for maximum efficiency.",
+    title: "Cloud & Platform\nEngineering",
+    description: "Accelerate cloud adoption with Kubernetes, DevOps, multi-cloud infrastructure, platform engineering, and scalable deployment solutions.",
     stat: "99.98% uptime SLA",
     statColor: "#8b5cf6",
   },
   {
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
-    title: "Data & Analytics\nSolutions",
-    description: "Unlock insights from your data with advanced analytics, business intelligence, and data engineering solutions.",
-    stat: "10x faster insights",
+    image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=600&h=400&fit=crop",
+    title: "Cyber Resilience &\nThreat Intelligence",
+    description: "Strengthen business security with proactive cybersecurity, threat intelligence, SOC services, compliance support, and AI security guardrails.",
+    stat: "Zero-breach record",
     statColor: "#ef4444",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop",
+    title: "Digital Products &\nExperience\nEngineering",
+    description: "Design user-centric digital experiences through UX research, UI engineering, product strategy, and conversion optimization.",
+    stat: "96% retention rate",
+    statColor: "#f97316",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    title: "Strategic IT Governance\n& Managed Services",
+    description: "Optimize IT operations with managed infrastructure, vCIO consulting, helpdesk support, governance frameworks, and cloud management services.",
+    stat: "24/7 managed support",
+    statColor: "#0ea5e9",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",
+    title: "Workforce Technology\n& Human Capital\nAdvisory",
+    description: "Modernize workforce operations with HR tech integration, AI upskilling programs, HR automation, and workforce productivity solutions.",
+    stat: "3x productivity gains",
+    statColor: "#a855f7",
   },
 ]
 
@@ -159,9 +180,7 @@ export function CoreServicePillars() {
               OUR CORE SERVICE PILLARS
             </h2>
             <p className="text-[#6b7280] text-sm sm:text-[15px] lg:text-base max-w-2xl leading-relaxed">
-              Our technology services help startups, SMBs, and enterprises accelerate innovation,
-              optimize operations, modernize infrastructure, and build scalable digital ecosystems
-              for long-term growth.
+              Our technology services help startups, SMBs, and enterprises accelerate innovation, optimize operations, modernize infrastructure, and build scalable digital ecosystems for long-term growth.
             </p>
           </div>
           <a href="#services" className="flex items-center gap-2 text-[#1e3a5f] text-sm font-medium hover:text-[#3b67ff] transition-colors shrink-0">

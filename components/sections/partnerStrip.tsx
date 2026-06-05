@@ -4,12 +4,14 @@ import { useEffect, useRef } from "react"
 import { gsap } from "@/lib/gsap"
 
 const LOGOS = [
-  "/companies/p8.svg",
-  "/companies/p2.svg",
-  "/companies/p3.svg",
-  "/companies/p4.svg",
-  "/companies/p5.svg",
-  "/companies/p6.svg",
+  "/publicimg/tech/Google.svg",
+
+  "/publicimg/tech/nttdata.svg",
+
+  "/publicimg/healthcare/MAX.svg",
+  "/publicimg/Fintech%20/bharatpe.svg",
+  "/publicimg/healthcare/patanjali.svg",
+  "/publicimg/healthcare/FORTIS.svg",
 ]
 
 // Triple logos for guaranteed no-gap loop
@@ -67,7 +69,7 @@ export function PartnerStrip() {
 
   return (
     <div
-      className="relative z-10 h-[88px] shrink-0 overflow-hidden flex items-center"
+      className="relative z-10 h-[110px] shrink-0 overflow-hidden flex items-center"
       style={{
         background: "linear-gradient(90deg, #3b67ff 0%, #4d7bff 50%, #3b67ff 100%)",
       }}
@@ -89,7 +91,7 @@ export function PartnerStrip() {
             <div
               key={i}
               className="shrink-0 flex items-center justify-center"
-              style={{ width: 120, height: 48 }}   // ← fixed slot size, same for all
+              style={{ width: 160, height: 110 }}   // ← fixed slot size, same for all
             >
               <img
                 src={src}

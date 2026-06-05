@@ -4,32 +4,54 @@ import { useEffect, useRef } from "react"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 const government = [
-  { name: "Indian Air Force",  logo: "/publicimg/airforce.svg" },
-  { name: "Indian Army",       logo: "/publicimg/army.svg" },
-  { name: "Indian Railways",   logo: "/publicimg/client3.png" },
-  { name: "Bihar Tourism",     logo: "/publicimg/client9.png" },
-  { name: "Noida Authority",   logo: "/publicimg/client4.png" },
+  { name: "Indian Air Force",  logo: "/publicimg/govt/airforce.svg" },
+  { name: "Indian Army",       logo: "/publicimg/govt/army.svg" },
+  { name: "Indian Navy",       logo: "/publicimg/govt/navy.svg" },
+  { name: "Indian Railways",   logo: "/publicimg/govt/railway.svg" },
+  { name: "Ayush Ministry",    logo: "/publicimg/govt/ayushM.svg" },
+  { name: "Health Ministry",   logo: "/publicimg/govt/healthM.svg" },
+  { name: "Skill India",       logo: "/publicimg/govt/skillIndia.svg" },
+  { name: "Survey of India",   logo: "/publicimg/govt/SurveyIndia.svg" },
+  { name: "ICAR",              logo: "/publicimg/govt/icar.svg" },
+  { name: "UPPCL",             logo: "/publicimg/govt/uppcl.svg" },
+  { name: "UP Government",     logo: "/publicimg/govt/up.svg" },
+  { name: "DESCO",             logo: "/publicimg/govt/desco.svg" },
+  { name: "BT",                logo: "/publicimg/govt/bt.svg" },
 ]
 
 const technology = [
-  { name: "Google",      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" },
-  { name: "Damco",       logo: "/publicimg/client21.png" },
-  { name: "NTT Data",    logo: "/publicimg/client14.png" },
-  { name: "infodart",    logo: "/publicimg/client17.png" },
-  { name: "Bit studios", logo: "/publicimg/client19.png" },
-  { name: "Algoworks",   logo: "/publicimg/client20.png" },
+  { name: "Google",          logo: "/publicimg/tech/Google.svg" },
+  { name: "NTT Data",        logo: "/publicimg/tech/nttdata.svg" },
+  { name: "Damco",           logo: "/publicimg/tech/Damco.svg" },
+  { name: "Infodart",        logo: "/publicimg/tech/infodart.svg" },
+  { name: "Algoworks",       logo: "/publicimg/tech/Algowork.svg" },
+  { name: "BluePi",          logo: "/publicimg/tech/Bluepi.svg" },
+  { name: "Union Systems",   logo: "/publicimg/tech/UnionSys.svg" },
+  { name: "WinZip",          logo: "/publicimg/tech/WinZip.svg" },
+  { name: "Essel",           logo: "/publicimg/tech/essel.svg" },
+  { name: "i2k2",            logo: "/publicimg/tech/i2k2.svg" },
+  { name: "Innodata",        logo: "/publicimg/tech/innodata.svg" },
+  { name: "KiwiTech",        logo: "/publicimg/tech/kiwitech.svg" },
+  { name: "Knowcross",       logo: "/publicimg/tech/knowcross.svg" },
+  { name: "Sonata Software", logo: "/publicimg/tech/sonata.svg" },
 ]
 
 const fintech = [
-  { name: "GPay",     logo: "/publicimg/client28.png" },
-  { name: "Yes Bank", logo: "/publicimg/client24.png" },
-  { name: "Amazon Pay", logo: "/publicimg/client30.png" },
+  { name: "Google Pay",  logo: "/publicimg/Fintech%20/Gpay.svg" },
+  { name: "Yes Bank",    logo: "/publicimg/Fintech%20/Yes%20Bank.svg" },
+  { name: "Amazon Pay",  logo: "/publicimg/Fintech%20/Amazone%20Pay.svg" },
+  { name: "BharatPe",    logo: "/publicimg/Fintech%20/bharatpe.svg" },
+  { name: "Magicpin",    logo: "/publicimg/Fintech%20/magicpin.svg" },
+  { name: "ClearDekho",  logo: "/publicimg/Fintech%20/clear%20dekho.svg" },
+  { name: "Rentickle",   logo: "/publicimg/Fintech%20/rentickle.svg" },
+  { name: "White Blue",  logo: "/publicimg/Fintech%20/White%20Blue.svg" },
 ]
 
 const healthcare = [
-  { name: "Max Healthcare",   logo: "/publicimg/maxH.svg" },
-  { name: "Fortis",           logo: "/publicimg/fortisH.svg" },
-  { name: "Prakash Hospital", logo: "/publicimg/prakashH.svg" },
+  { name: "Max Healthcare",  logo: "/publicimg/healthcare/MAX.svg" },
+  { name: "Fortis",          logo: "/publicimg/healthcare/FORTIS.svg" },
+  { name: "Prakash Hospital",  logo: "/publicimg/healthcare/cure%20with%20care.svg" },
+  { name: "Patanjali",       logo: "/publicimg/healthcare/patanjali.svg" },
 ]
 
 const brandColors: Record<string, string> = {
@@ -58,10 +80,10 @@ function ClientCard({
         rounded-2xl border border-[#e8eef8] bg-white
         hover:border-[#3b67ff]/40
         hover:shadow-[0_10px_36px_rgba(59,103,255,0.13)]
-        hover:bg-[#f5f8ff]
+    
         transition-all duration-200 cursor-default select-none
       "
-      style={{ width: tall ? 172 : 156, height: tall ? 144 : 104, padding: "12px 14px", flexShrink: 0 }}
+      style={{ width: tall ? 210 : 190, height: tall ? 170 : 130, padding: "16px 18px", flexShrink: 0 }}
     >
       {client.logo ? (
         <img
@@ -69,7 +91,7 @@ function ClientCard({
           alt={client.name}
           draggable={false}
           className="object-contain group-hover:scale-108 transition-transform duration-300"
-          style={{ width: tall ? 90 : 72, height: tall ? 58 : 40 }}
+          style={{ width: tall ? 330 : 410, height: tall ? 120 : 122 }}
           onError={(e) => { (e.target as HTMLImageElement).style.display = "none" }}
         />
       ) : (
@@ -81,7 +103,7 @@ function ClientCard({
         </span>
       )}
       <span className="text-[10px] text-[#6b7a99] font-semibold text-center leading-tight tracking-wide group-hover:text-[#3b67ff] transition-colors duration-200">
-        {client.name}
+        {/* {client.name} */}
       </span>
     </div>
   )
@@ -232,8 +254,14 @@ export function FeaturedClients() {
         <div className="space-y-10 lg:space-y-14">
           <MarqueeRow label="Government"  items={government}  speed={44} tall         />
           <MarqueeRow label="Technology"  items={technology}  speed={55} reverse      />
-          <MarqueeRow label="Fintech"     items={fintech}     speed={40}              />
-          <MarqueeRow label="Healthcare"  items={healthcare}  speed={48} reverse      />
+         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 min-w-0">
+           <div className="min-w-0 overflow-hidden">
+             <MarqueeRow label="Fintech"    items={fintech}    speed={40}         />
+           </div>
+           <div className="min-w-0 overflow-hidden">
+             <MarqueeRow label="Healthcare" items={healthcare} speed={28}  />
+           </div>
+         </div>
         </div>
 
       </div>
