@@ -99,51 +99,25 @@ export function CoreServicePillars() {
 
       const cards = Array.from(track.querySelectorAll(".svc-card"))
 
-      // Card 0: fully visible immediately — user sees it right away
-      gsap.set(cards[0], { opacity: 1, scale: 1, y: 0, x: 0 })
+      // All cards: full opacity from the start — no dimming
+      gsap.set(cards, { opacity: 1 })
 
-      // Cards 1–N: dimmed but in-place, fade up as they scroll into view
-      gsap.set(cards.slice(1), { opacity: 0.35 })
-
-      // Extra scroll pixels the first card "dwells" before track moves
-      const DWELL = 30
       const slideDistance = track.scrollWidth - window.innerWidth + 160
-      const totalEnd = slideDistance + DWELL
-
-      // dwellFraction = what fraction of the timeline is pure dwell (no movement)
-      const dwellF = DWELL / totalEnd
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${totalEnd}`,
-          scrub: 1.5,
+          end: () => `+=${slideDistance}`,
+          scrub: 0.6,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       })
 
-      // ── Phase 1: dwell — first card visible, nothing moves ────────────────
-      tl.to({}, { duration: dwellF })
-
-      // ── Phase 2: track slides left (starts after dwell) ───────────────────
-      tl.to(
-        track,
-        { x: () => -slideDistance, ease: "none", duration: 1 - dwellF },
-        dwellF
-      )
-
-      // ── Phase 3: each card fades in as it scrolls into view ──────────────
-      cards.slice(1).forEach((card, i) => {
-        const enterAt = dwellF + (i / (cards.length - 1)) * (1 - dwellF) * 0.78
-        tl.to(
-          card,
-          { opacity: 1, ease: "power2.out", duration: 0.22 },
-          enterAt
-        )
-      })
+      // Track slides left immediately — no dwell, no blocking pause
+      tl.to(track, { x: () => -slideDistance, ease: "none", duration: 1 })
 
       cards.forEach((card) => {
         const el  = card as HTMLElement

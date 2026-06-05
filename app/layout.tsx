@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { SmoothScrollProvider } from '@/providers/smooth-scroll-provider'
+import Script from 'next/script'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -53,6 +54,20 @@ export default function RootLayout({
           {children}
         </SmoothScrollProvider>
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {/* Hidden Google Translate mount point */}
+        <div id="google_translate_element" style={{ display: 'none' }} />
+        <Script id="google-translate-init" strategy="afterInteractive">{`
+          function googleTranslateElementInit() {
+            new window.google.translate.TranslateElement(
+              { pageLanguage: 'en', includedLanguages: 'en,pt,hi,ar,fr,es', autoDisplay: false },
+              'google_translate_element'
+            );
+          }
+        `}</Script>
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react"
 import Link from "next/link"
 import { gsap } from "@/lib/gsap"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown, Globe } from "lucide-react"
 
 const navigation = [
   { name: "Services", href: "#services", hasDropdown: true },
@@ -36,12 +36,44 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isServicesOpen, setIsServicesOpen] = useState(false)
+  const [isLangOpen, setIsLangOpen] = useState(false)
+  const [activeLang, setActiveLang] = useState("EN")
 
+  const langDropdownRef = useRef<HTMLDivElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const chevronRef = useRef<SVGSVGElement>(null)
   const itemRefs = useRef<HTMLDivElement[]>([])
   const isOpenRef = useRef(false)
   const logoRef = useRef<HTMLDivElement>(null)
+
+  const LANGUAGES = [
+    { code: "en",    label: "English",    flag: "🇬🇧", short: "EN" },
+    { code: "pt",    label: "Português",   flag: "🇧🇷", short: "PT" },
+    { code: "hi",    label: "हिंदी",       flag: "🇮🇳", short: "HI" },
+    { code: "ar",    label: "العربية",      flag: "🇸🇦", short: "AR" },
+    { code: "fr",    label: "Français",    flag: "🇫🇷", short: "FR" },
+    { code: "es",    label: "Español",    flag: "🇪🇸", short: "ES" },
+  ]
+
+  const switchLanguage = (code: string, short: string) => {
+    setActiveLang(short)
+    setIsLangOpen(false)
+    const select = document.querySelector(".goog-te-combo") as HTMLSelectElement | null
+    if (select) {
+      select.value = code
+      select.dispatchEvent(new Event("change"))
+    }
+  }
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (langDropdownRef.current && !langDropdownRef.current.contains(e.target as Node)) {
+        setIsLangOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   useEffect(() => {
     let prevScrolled = false
@@ -306,6 +338,46 @@ export function Header() {
               )}
             </div>
 
+            {/* LANGUAGE SWITCHER */}
+            <div ref={langDropdownRef} className="relative">
+              <button
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className={`flex items-center gap-1.5 text-[13px] font-semibold px-3 py-1.5 rounded-lg transition-all duration-200 ${
+                  isScrolled
+                    ? "text-[#0d1e3c] hover:bg-[#f0f4ff] hover:text-[#3b67ff]"
+                    : "text-white/90 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                <Globe className="w-3.5 h-3.5" />
+                {activeLang}
+                <ChevronDown
+                  className={`w-3 h-3 transition-transform duration-200 ${isLangOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {isLangOpen && (
+                <div className="absolute right-0 top-full mt-2 w-44 rounded-xl border border-[#e8eefc] bg-white shadow-[0_12px_40px_rgba(0,0,0,0.10)] overflow-hidden z-50">
+                  {LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => switchLanguage(lang.code, lang.short)}
+                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-[13px] font-medium transition-colors duration-150 ${
+                        activeLang === lang.short
+                          ? "bg-[#f0f4ff] text-[#3b67ff]"
+                          : "text-[#0d1e3c] hover:bg-[#f8fbff] hover:text-[#3b67ff]"
+                      }`}
+                    >
+                      <span className="text-base leading-none">{lang.flag}</span>
+                      <span>{lang.label}</span>
+                      {activeLang === lang.short && (
+                        <span className="ml-auto text-[#3b67ff]">✓</span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {/* CTA */}
             <div className="hidden lg:block">
               <button
@@ -512,6 +584,27 @@ export function Header() {
               <button className="w-full bg-[#3b67ff] text-white font-semibold py-3 rounded-xl">
                 Contact Us
               </button>
+            </div>
+
+            {/* Language switcher — mobile */}
+            <div className="pt-4 border-t border-gray-100">
+              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 px-1">Language</p>
+              <div className="grid grid-cols-2 gap-2">
+                {LANGUAGES.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => switchLanguage(lang.code, lang.short)}
+                    className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium border transition-colors ${
+                      activeLang === lang.short
+                        ? "bg-[#3b67ff] text-white border-[#3b67ff]"
+                        : "text-[#0d1e3c] border-[#e8eefc] hover:border-[#3b67ff] hover:text-[#3b67ff]"
+                    }`}
+                  >
+                    <span>{lang.flag}</span>
+                    <span>{lang.label}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

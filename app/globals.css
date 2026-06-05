@@ -129,6 +129,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ── Suppress Google Translate default UI chrome ──────────────────────────── */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-te-menu-frame {
+  display: none !important;
+}
+/* Prevent Google Translate from pushing page content down */
+body {
+  top: 0 !important;
+}
+/* Hide the skiptranslate bar that sometimes appears */
+.skiptranslate {
+  display: none !important;
+}
+/* ─────────────────────────────────────────────────────────────────────────── */
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

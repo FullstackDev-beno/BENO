@@ -7,8 +7,8 @@ import { gsap } from "@/lib/gsap"
 // ─── Constants ────────────────────────────────────────────────────────────────
 const RING_SIZE   = 10
 const ANGLE_STEP  = 360 / RING_SIZE   // 36°
-const RADIUS      = 580
-const CARD_W      = 268
+const RADIUS      = 540
+const CARD_W      = 288
 const CARD_H      = 350
 const PERSPECTIVE = 1400
 
@@ -110,6 +110,7 @@ function Carousel3D({ tab }: { tab: string }) {
   const pointerIdRef    = useRef<number | null>(null)
   const rafRef          = useRef<number | null>(null)
   const tweenObjRef     = useRef({ r: 0 })
+  const isHoveringRef   = useRef(false)
   const [activeIdx, setActiveIdx] = useState(0)
   const [grabbing,  setGrabbing]  = useState(false)
 
@@ -187,7 +188,7 @@ function Carousel3D({ tab }: { tab: string }) {
 
     animateTo(best, () => {
       rotationObj.current.value = rotRef.current
-      autoRotateRef.current?.resume()
+      if (!isHoveringRef.current) autoRotateRef.current?.resume()
     })
   }, [animateTo])
 
@@ -306,7 +307,7 @@ function Carousel3D({ tab }: { tab: string }) {
 
     animateTo(best, () => {
       rotationObj.current.value = rotRef.current
-      autoRotateRef.current?.resume()
+      if (!isHoveringRef.current) autoRotateRef.current?.resume()
     })
   }
 
@@ -314,7 +315,17 @@ function Carousel3D({ tab }: { tab: string }) {
   const activeDot = activeIdx % srcLen
 
   return (
-    <div className="mt-40">
+    <div
+      className="mt-40"
+      onMouseEnter={() => {
+        isHoveringRef.current = true
+        if (!isDraggingRef.current) autoRotateRef.current?.pause()
+      }}
+      onMouseLeave={() => {
+        isHoveringRef.current = false
+        if (!isDraggingRef.current) autoRotateRef.current?.resume()
+      }}
+    >
       <div
         style={{
           position: "relative",
@@ -378,9 +389,9 @@ function BlogCard({ article: a, slotIndex }: { article: Article; slotIndex: numb
 
   const onEnter = () => {
     if (!ref.current) return
-    gsap.to(ref.current, { y: -10, scale: 1.03, duration: 0.4, ease: "power2.out" })
+    gsap.to(ref.current, { y: -8, scale: 1.015, duration: 0.4, ease: "power2.out" })
     const img = ref.current.querySelector<HTMLElement>(".bc-img-wrap")
-    if (img) gsap.to(img.querySelector("img"), { scale: 1.07, duration: 0.55, ease: "power2.out" })
+    if (img) gsap.to(img.querySelector("img"), { scale: 1.04, duration: 0.55, ease: "power2.out" })
   }
   const onLeave = () => {
     if (!ref.current) return

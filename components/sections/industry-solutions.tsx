@@ -42,16 +42,16 @@ export function IndustrySolutions() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(headingRef.current,
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
-          scrollTrigger: { trigger: headingRef.current, start: "top 88%" } }
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out",
+          scrollTrigger: { trigger: headingRef.current, start: "top 90%" } }
       )
       const cards = gridRef.current?.querySelectorAll(".ind-card")
       if (cards) {
         gsap.fromTo(cards,
-          { opacity: 0, y: 24, scale: 0.94 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power2.out", stagger: 0.055,
-            scrollTrigger: { trigger: gridRef.current, start: "top 84%" } }
+          { opacity: 0, y: 18, scale: 0.92 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(1.4)", stagger: 0.028,
+            scrollTrigger: { trigger: gridRef.current, start: "top 88%" } }
         )
       }
     }, sectionRef)
@@ -85,20 +85,33 @@ export function IndustrySolutions() {
           {industries.map((ind) => (
             <div
               key={ind.name}
-              className="ind-card group flex flex-col items-center gap-3 p-5 sm:p-6 rounded-2xl border border-[#e8eef8] bg-white hover:border-[#3b67ff]/30 hover:shadow-lg hover:shadow-[#3b67ff]/08 transition-all duration-250 cursor-default"
+              className="ind-card group flex flex-col items-center gap-3 p-5 sm:p-6 rounded-2xl
+                border border-[#e8eef8] bg-white
+                hover:border-[#3b67ff]/40
+                hover:shadow-[0_8px_32px_rgba(59,103,255,0.13)]
+                hover:bg-[#f5f8ff]
+                transition-all duration-200 cursor-default"
             >
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#3b67ff"
-                strokeWidth="1.6"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-8 h-8 sm:w-9 sm:h-9 group-hover:scale-110 transition-transform duration-300"
-              >
-                <path d={icons[ind.svg]} />
-              </svg>
-              <span className="text-[#0d1e3c] text-[12px] sm:text-[13px] font-semibold text-center leading-tight">
+              {/* Icon container — blue tinted pill on hover */}
+              <div className="
+                w-12 h-12 sm:w-14 sm:h-14 rounded-xl
+                flex items-center justify-center
+                bg-[#f0f4ff] group-hover:bg-[#3b67ff]
+                transition-colors duration-200
+              ">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-6 h-6 sm:w-7 sm:h-7 text-[#3b67ff] group-hover:text-white group-hover:scale-110 transition-all duration-200"
+                >
+                  <path d={icons[ind.svg]} />
+                </svg>
+              </div>
+              <span className="text-[#0d1e3c] group-hover:text-[#3b67ff] text-[12px] sm:text-[13px] font-semibold text-center leading-tight transition-colors duration-200">
                 {ind.name}
               </span>
             </div>

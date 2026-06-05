@@ -90,52 +90,25 @@ export function SuccessStories() {
 
       const cards = track.querySelectorAll(".story-card")
 
-      // All cards fully visible — cards 1–N start slightly pulled back
-      gsap.set(cards[0], { scale: 1, y: 0, rotateX: 0 })
-      gsap.set(Array.from(cards).slice(1), {
-        scale: 0.88,
-        y: 36,
-        rotateX: 7,
-        transformPerspective: 1100,
-      })
+      // All cards fully visible from the start — no dimming or pulling back
+      gsap.set(cards, { scale: 1, y: 0, rotateX: 0 })
 
-      // DWELL: how many extra scroll-px card 0 stays before track moves
-      const DWELL = 90
       const getSlide = () => track.scrollWidth - window.innerWidth + 120
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: () => `+=${getSlide() + DWELL}`,
-          scrub: 1.5,
+          end: () => `+=${getSlide()}`,
+          scrub: 0.6,
           pin: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       })
 
-      // Phase 1: dwell — nothing moves (card 0 stays visible)
-      const dwellF = DWELL / (getSlide() + DWELL)
-      tl.to({}, { duration: dwellF })
-
-      // Phase 2: slide track left
-      tl.to(
-        track,
-        { x: () => -getSlide(), ease: "none", duration: 1 - dwellF },
-        dwellF
-      )
-
-      // Cards 1–N: slide into full position as track scrolls
-      Array.from(cards).slice(1).forEach((card, i) => {
-        const startOffset = dwellF + (i / (cards.length - 1)) * (1 - dwellF) * 0.7
-        tl.to(
-          card,
-          { scale: 1, y: 0, rotateX: 0, ease: "power4.out", duration: 0.25,
-            clearProps: "rotateX,transformPerspective" },
-          startOffset
-        )
-      })
+      // Slide track left immediately — no dwell pause
+      tl.to(track, { x: () => -getSlide(), ease: "none", duration: 1 })
 
       // Hover: active card lifts
       cards.forEach((card) => {

@@ -10,8 +10,7 @@ import { FeaturedClients } from "@/components/sections/featured-clients"
 import { SuccessStories } from "@/components/sections/success-stories"
 import { EngineeringInnovation } from "@/components/sections/engineering-innovation"
 import { BlogInsights } from "@/components/sections/blog-insights"
-import { FAQSection } from "@/components/sections/faq-section"
-import { CTASection } from "@/components/sections/cta-section"
+import { CTAFAQSection } from "@/components/sections/cta-faq-section"
 import { Footer } from "@/components/sections/footer"
 
 export default function Page() {
@@ -30,8 +29,7 @@ export default function Page() {
         <SuccessStories />
         <EngineeringInnovation />
         <BlogInsights />
-        <FAQSection />
-        <CTASection />
+        <CTAFAQSection />
       </main>
       <Footer />
     </>
