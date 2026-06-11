@@ -15,20 +15,20 @@ const navigation = [
 
 const services = [
   [
-    "Core Engineering & Application Architecture",
-    "Cyber Resilience & Threat Intelligence",
+    { label: "Core Engineering & Application Architecture", href: "/services/core-engineering-application-architecture" },
+    { label: "Cyber Resilience & Threat Intelligence",     href: "/services/cyber-resilience-threat-intelligence" },
   ],
   [
-    "Agentic AI & Intelligent Automation",
-    "Digital Products & Experience Engineering",
+    { label: "Agentic AI & Intelligent Automation",        href: "/services/agentic-ai-intelligent-automation" },
+    { label: "Digital Products & Experience Engineering",  href: "/services/digital-products-experience-engineering" },
   ],
   [
-    "Enterprise & Startup Tech Strategy",
-    "Strategic IT Governance & Managed Services",
+    { label: "Enterprise & Startup Tech Strategy",         href: "/services/enterprise-startup-tech-strategy" },
+    { label: "Strategic IT Governance & Managed Services", href: "/services/strategic-it-governance-managed-services" },
   ],
   [
-    "Cloud & Platform Engineering",
-    "Workforce Technology & Human Capital Advisory",
+    { label: "Cloud & Platform Engineering",               href: "/services/cloud-platform-engineering" },
+    { label: "Workforce Technology & Human Capital Advisory", href: "/services/workforce-technology-human-capital-advisory" },
   ],
 ]
 
@@ -467,17 +467,19 @@ export function Header() {
             "
           >
             {services.flatMap((pair, rowIdx) =>
-              pair.map((label, colIdx) => {
+              pair.map((item, colIdx) => {
                 const flatIdx = rowIdx * 2 + colIdx
 
                 const isFirst = flatIdx === 0
 
                 return (
-                  <div
-                    key={label}
+                  <Link
+                    href={item.href}
+                    key={item.label}
                     ref={(el) => {
-                      if (el) itemRefs.current[flatIdx] = el
+                      if (el) itemRefs.current[flatIdx] = el as unknown as HTMLDivElement
                     }}
+                    onClick={() => closeDropdown()}
                     className="
                       service-item
                       group
@@ -495,13 +497,13 @@ export function Header() {
                     "
                     onMouseEnter={(e) =>
                       handleServiceMouseEnter(
-                        e.currentTarget,
+                        e.currentTarget as unknown as HTMLDivElement,
                         isFirst
                       )
                     }
                     onMouseLeave={(e) =>
                       handleServiceMouseLeave(
-                        e.currentTarget,
+                        e.currentTarget as unknown as HTMLDivElement,
                         isFirst
                       )
                     }
@@ -539,7 +541,7 @@ export function Header() {
                             : "#1e293b",
                         }}
                       >
-                        {label}
+                        {item.label}
 
                         <span
                           className="
@@ -555,7 +557,7 @@ export function Header() {
                         />
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 )
               })
             )}
@@ -571,14 +573,29 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() =>
-                  setIsMobileMenuOpen(false)
-                }
-                className="block py-3 text-base font-medium text-[#3b67ff]"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block py-3 text-base font-medium text-[#0d1e3c]"
               >
                 {item.name}
               </Link>
             ))}
+
+            {/* Mobile services list */}
+            <div className="pt-2 pb-1">
+              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2 px-1">Services</p>
+              <div className="space-y-1">
+                {services.flatMap((pair) => pair).map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block py-2 px-2 text-[13px] font-medium text-[#374151] hover:text-[#3b67ff] rounded-lg hover:bg-[#f0f4ff] transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
 
             <div className="pt-4">
               <button className="w-full bg-[#3b67ff] text-white font-semibold py-3 rounded-xl">

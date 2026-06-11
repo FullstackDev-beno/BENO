@@ -4,34 +4,127 @@ import { useEffect, useRef } from "react"
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
 const industries = [
-  { name: "BFSI",        icon: "🏛", svg: "bank" },
-  { name: "Healthcare",  icon: "🏥", svg: "health" },
-  { name: "Manufacturing", icon: "🏭", svg: "factory" },
-  { name: "E-Commerce",  icon: "🛒", svg: "cart" },
-  { name: "Logistics",   icon: "🚚", svg: "truck" },
-  { name: "IT/SaaS",     icon: "☁", svg: "cloud" },
-  { name: "Education",   icon: "🎓", svg: "edu" },
-  { name: "Insurance",   icon: "📄", svg: "doc" },
-  { name: "Real Estate", icon: "🏢", svg: "building" },
-  { name: "Government",  icon: "🏛", svg: "govt" },
-  { name: "Travel",      icon: "✈", svg: "plane" },
-  { name: "Startups",    icon: "🚀", svg: "rocket" },
+  { name: "Fintech",     svg: "fintech" },
+  { name: "IT/SaaS",    svg: "cloud" },
+  { name: "Healthcare",  svg: "health" },
+  { name: "EdTech",      svg: "edu" },
+  { name: "Government",  svg: "govt" },
+  { name: "Travel",      svg: "plane" },
+  { name: "Hospitality", svg: "hospitality" },
+  { name: "E-commerce",  svg: "cart" },
+  { name: "Telecom",     svg: "telecom" },
+  { name: "Aviation",    svg: "aviation" },
+  { name: "Insurance",   svg: "doc" },
+  { name: "Gaming",      svg: "gaming" },
 ]
 
-// SVG icon paths matching screenshot's line-icon style
-const icons: Record<string, string> = {
-  bank:     "M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M12 10v11M16 10v11",
-  health:   "M12 3h-2a2 2 0 00-2 2v2H6a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V9a2 2 0 00-2-2h-2V5a2 2 0 00-2-2zm-1 9v-2m0 0V8m0 2H9m2 0h2",
-  factory:  "M2 20h20M5 20V8l5-5v17M10 3h10v17M14 8h2M14 12h2M14 16h2",
-  cart:     "M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0",
-  truck:    "M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11v14H5zm7-14h5l3 4v7h-8V3zM7 19a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z",
-  cloud:    "M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z",
-  edu:      "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5",
-  doc:      "M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6zM14 2v6h6M12 18v-6M9 15h6",
-  building: "M3 21h18M9 21V7l6-4v18M3 21V11l6-4",
-  govt:     "M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 10v11M12 10v11M16 10v11",
-  plane:    "M17.8 19.2L16 11l3.5-3.5C21 6 21 4 19.5 2.5S18 2 16.5 3.5L13 7 4.8 5.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z",
-  rocket:   "M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09zM12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z",
+// Clean outline SVG paths matching the screenshot's icon style
+const icons: Record<string, JSX.Element> = {
+  // Fintech — classic bank/pillars icon
+  fintech: (
+    <>
+      <line x1="3" y1="22" x2="21" y2="22" strokeWidth="1.6" />
+      <line x1="3" y1="11" x2="21" y2="11" strokeWidth="1.6" />
+      <polyline points="5,11 5,22" strokeWidth="1.6" />
+      <polyline points="9,11 9,22" strokeWidth="1.6" />
+      <polyline points="13,11 13,22" strokeWidth="1.6" />
+      <polyline points="17,11 17,22" strokeWidth="1.6" />
+      <polyline points="21,11 21,22" strokeWidth="1.6" />
+      <polygon points="12,2 3,11 21,11" strokeWidth="1.6" strokeLinejoin="round" />
+    </>
+  ),
+  // IT/SaaS — cloud
+  cloud: (
+    <path d="M18 10h-1.26A8 8 0 109 20h9a5 5 0 000-10z" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  ),
+  // Healthcare — medical briefcase/kit
+  health: (
+    <>
+      <rect x="3" y="7" width="18" height="14" rx="2" strokeWidth="1.6" />
+      <path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="12" y1="11" x2="12" y2="17" strokeWidth="1.6" strokeLinecap="round" />
+      <line x1="9" y1="14" x2="15" y2="14" strokeWidth="1.6" strokeLinecap="round" />
+    </>
+  ),
+  // EdTech — graduation cap
+  edu: (
+    <>
+      <polygon points="12,2 2,7 12,12 22,7" strokeWidth="1.6" strokeLinejoin="round" />
+      <polyline points="6,9.5 6,16" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M6 16c0 2.5 2.7 4 6 4s6-1.5 6-4" strokeWidth="1.6" strokeLinecap="round" />
+    </>
+  ),
+  // Government — building with columns
+  govt: (
+    <>
+      <rect x="3" y="9" width="18" height="13" rx="1" strokeWidth="1.6" />
+      <polyline points="3,9 12,3 21,9" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" />
+      <line x1="7" y1="9" x2="7" y2="22" strokeWidth="1.4" />
+      <line x1="12" y1="9" x2="12" y2="22" strokeWidth="1.4" />
+      <line x1="17" y1="9" x2="17" y2="22" strokeWidth="1.4" />
+      <line x1="3" y1="22" x2="21" y2="22" strokeWidth="1.6" strokeLinecap="round" />
+    </>
+  ),
+  // Travel — paper plane / flight
+  plane: (
+    <path
+      d="M21 3L3 10.5l7.5 3L14 21l3-7.5L21 3z"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  ),
+  // Hospitality — bed/hotel
+  hospitality: (
+    <>
+      <path d="M2 9V19" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M22 19V11a2 2 0 00-2-2H10a2 2 0 00-2 2v8" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+      <rect x="2" y="14" width="20" height="5" rx="1" strokeWidth="1.6" />
+      <circle cx="6" cy="12" r="1.5" strokeWidth="1.4" />
+    </>
+  ),
+  // E-commerce — shopping cart
+  cart: (
+    <>
+      <circle cx="9" cy="21" r="1" strokeWidth="1.6" />
+      <circle cx="20" cy="21" r="1" strokeWidth="1.6" />
+      <path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+  // Telecom — signal/wifi waves
+  telecom: (
+    <>
+      <circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none" />
+      <path d="M8.5 15.5a5 5 0 017 0" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M5 12a9.5 9.5 0 0114 0" strokeWidth="1.6" strokeLinecap="round" />
+      <path d="M1.5 8.5a14 14 0 0121 0" strokeWidth="1.6" strokeLinecap="round" />
+    </>
+  ),
+  // Aviation — airplane silhouette (side view)
+  aviation: (
+    <>
+      <path d="M12 2L4 14h4l-1 6 5-2 5 2-1-6h4L12 2z" strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" />
+    </>
+  ),
+  // Insurance — document with lines
+  doc: (
+    <>
+      <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" strokeWidth="1.6" strokeLinejoin="round" />
+      <polyline points="14,2 14,8 20,8" strokeWidth="1.6" strokeLinejoin="round" />
+      <line x1="8" y1="13" x2="16" y2="13" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="8" y1="17" x2="12" y2="17" strokeWidth="1.4" strokeLinecap="round" />
+    </>
+  ),
+  // Gaming — gamepad/controller
+  gaming: (
+    <>
+      <rect x="2" y="6" width="20" height="12" rx="5" strokeWidth="1.6" />
+      <line x1="6" y1="12" x2="10" y2="12" strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="8" y1="10" x2="8" y2="14" strokeWidth="1.4" strokeLinecap="round" />
+      <circle cx="16" cy="10.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="18.5" cy="13" r="1" fill="currentColor" stroke="none" />
+    </>
+  ),
 }
 
 export function IndustrySolutions() {
@@ -80,7 +173,7 @@ export function IndustrySolutions() {
           </p>
         </div>
 
-        {/* Grid */}
+        {/* Grid — 2 rows × 6 cols matching screenshot */}
         <div ref={gridRef} className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
           {industries.map((ind) => (
             <div
@@ -92,7 +185,7 @@ export function IndustrySolutions() {
                 hover:bg-[#f5f8ff]
                 transition-all duration-200 cursor-default"
             >
-              {/* Icon container — blue tinted pill on hover */}
+              {/* Icon container */}
               <div className="
                 w-12 h-12 sm:w-14 sm:h-14 rounded-xl
                 flex items-center justify-center
@@ -103,12 +196,11 @@ export function IndustrySolutions() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.6"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   className="w-6 h-6 sm:w-7 sm:h-7 text-[#3b67ff] group-hover:text-white group-hover:scale-110 transition-all duration-200"
                 >
-                  <path d={icons[ind.svg]} />
+                  {icons[ind.svg]}
                 </svg>
               </div>
               <span className="text-[#0d1e3c] group-hover:text-[#3b67ff] text-[12px] sm:text-[13px] font-semibold text-center leading-tight transition-colors duration-200">
@@ -118,8 +210,6 @@ export function IndustrySolutions() {
           ))}
         </div>
 
-        {/* Blue bottom strip */}
-        {/* <div className="mt-16 h-[6px] w-full rounded-full bg-gradient-to-r from-[#3b67ff] via-[#4d7bff] to-[#3b67ff]" /> */}
       </div>
     </section>
   )
